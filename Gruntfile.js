@@ -101,7 +101,13 @@ module.exports = function(grunt) {
 					src: ['src/geolib.elevation.js'],
 					dest: 'dist/geolib.elevation.js'
 				}]
-			}
+			},
+			pointInside: {
+				files: [{
+					src: ['src/geolib.isPointInsideRobust.js'],
+					dest: 'dist/geolib.isPointInsideRobust.js'
+				}]
+			},
 		},
 		replace: {
 			version: {
@@ -134,7 +140,12 @@ module.exports = function(grunt) {
 				files: {
 					'dist/geolib.elevation.min.js': ['dist/geolib.elevation.js']
 				}
-			}
+			},
+			pointInside: {
+				files: {
+					'dist/geolib.isPointInsideRobust.min.js': ['dist/geolib.isPointInsideRobust.js']
+				}
+			},
 		},
 		watch: {
 			all: {
@@ -145,7 +156,8 @@ module.exports = function(grunt) {
 		jshint: {
 			all: [
 				'src/geolib.js',
-				'src/geolib.elevation.js'
+				'src/geolib.elevation.js',
+				'src/geolib.isPointInsideRobust.js',
 			],
 			options: {
 				curly: true,
@@ -156,6 +168,7 @@ module.exports = function(grunt) {
 				noarg: true,
 				sub: true,
 				undef: true,
+				evil: true,
 				boss: true,
 				eqnull: true,
 				globals: {
