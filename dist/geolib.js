@@ -907,15 +907,16 @@
             var coordsArray = [];
 
             for(var coord in coords) {
+                if (isNaN(coord) === false) {
+                    var d = this.getDistance(latlng, coords[coord]);
 
-                var d = this.getDistance(latlng, coords[coord]);
-
-                coordsArray.push({
-                    key: coord,
-                    latitude: this.latitude(coords[coord]),
-                    longitude: this.longitude(coords[coord]),
-                    distance: d
-                });
+                    coordsArray.push({
+                        key: coord,
+                        latitude: this.latitude(coords[coord]),
+                        longitude: this.longitude(coords[coord]),
+                        distance: d
+                    });
+                }
 
             }
 
@@ -923,13 +924,14 @@
 
         },
 
+
         /**
         * Check if a point lies in line created by two other points
         *
         * @param    object    Point to check: {latitude: 123, longitude: 123}
         * @param    object    Start of line {latitude: 123, longitude: 123}
         * @param    object    End of line {latitude: 123, longitude: 123}
-        * @return   boolean   
+        * @return   boolean
         */
         isPointInLine: function(point, start, end) {
             return this.getDistance(start, point, 1, 3)+this.getDistance(point, end, 1, 3)==this.getDistance(start, end, 1, 3);
